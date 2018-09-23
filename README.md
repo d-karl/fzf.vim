@@ -1,6 +1,12 @@
 fzf :heart: vim
 ===============
 
+About this fork
+--------------
+This is my personal fork of fzf.vim. Functionality was added to allow fzf to
+search through buffers managed by the Yankring vim plugin. For this to work,
+my modified version of Yankring is required.
+
 Things you can do with [fzf][fzf] and Vim.
 
 Rationale

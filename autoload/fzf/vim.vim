@@ -1316,6 +1316,24 @@ function! fzf#vim#complete(...)
   return ''
 endfunction
 
+function! s:yank_handler(reg)
+    if empty(a:reg)
+        echo "aborted Yank paste"
+    else
+        let token = split(a:reg, ' ')
+        execute 'YRGetElem' . token[0]
+    endif
+endfunction
+
+function! fzf#vim#yanks()
+    return s:fzf('yanks', {
+    \ 'source': YRGetYanksList(),
+    \ 'sink': s:function('s:yank_handler'),
+    \ 'options': '-m --prompt "Yanks> "',
+    \ 'down': 12
+    \ }, [])
+endfunction
+
 " ------------------------------------------------------------------
 let &cpo = s:cpo_save
 unlet s:cpo_save
